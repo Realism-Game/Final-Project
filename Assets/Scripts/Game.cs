@@ -8,10 +8,14 @@ public class Game : MonoBehaviour
     public CharacterInputController deer, bird, rabbit;
     public GameObject firstDoor, secondDoor, thirdDoor, enemy;
     public Trigger triggerA1, triggerA2, triggerA3, triggerB;
+    public CanvasGroup canvasGroup;
 
     public void GameOver()
     {
-        SceneManager.LoadScene("PitchScene");
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.alpha =  1f;
+        Time.timeScale = 0f;
     }
 
     void Update()
