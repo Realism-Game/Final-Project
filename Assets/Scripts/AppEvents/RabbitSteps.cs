@@ -5,21 +5,33 @@ using UnityEngine;
 public class RabbitSteps : MonoBehaviour
 {
 	CharacterInputController cc;
-	AudioSource audio;
+    Vector3 lastPostion;
+
+    private void setTargetTalk()
+    {
+        lastPostion = transform.position;
+    }
+
+
+    private void Start()
+    {
+        lastPostion = new Vector3(0, 0, 0);
+    }
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
 		cc = GetComponent<CharacterInputController>();
-        audio = GetComponent<AudioSource>();
 	}
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-		if (cc.Velocity > 0f && !audio.isPlaying)
-		{
-			audio.Play();
-		}
-	}
+        if (Vector3.Distance(lastPostion, transform.position) > 4f)
+        {
+            setTargetTalk();
+            if (cc != null && cc.enabled)
+                EventManager.TriggerEvent<RabbitFootStepEvent, Vector3>(transform.position);
+        }
+    }
 }
