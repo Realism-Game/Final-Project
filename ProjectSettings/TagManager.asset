@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - Button_trigger
+  - Detectable
   layers:
   - Default
   - TransparentFX
