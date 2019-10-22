@@ -41,8 +41,6 @@ public class GuardAI : MonoBehaviour
                     Vector3 destination = getMovingWaypointDestination();
                     myNavMeshAgent.SetDestination(destination);
                 }
-            } else if (los.foundSomething) {
-                setNextWaypoint();
             }
 
             if (myNavMeshAgent.remainingDistance > myNavMeshAgent.stoppingDistance)
@@ -54,7 +52,7 @@ public class GuardAI : MonoBehaviour
 
     private Vector3 getMovingWaypointDestination() {
             //Debug.Log(myNavMeshAgent.remainingDistance - myNavMeshAgent.stoppingDistance);
-            GameObject g = waypoints[this.currWaypoint];
+            GameObject g = los.collisionObject;
             Vector3 destination = g.transform.position;
             //Debug.Log("waypoint "+destination);
             if (stateMachine.aiState == AIStateMachine.AIState.Moving  && currWaypoint != 0) {
@@ -104,9 +102,9 @@ public class GuardAI : MonoBehaviour
                 destination = getMovingWaypointDestination();
             }
             if (los.foundSomething) {
-                destination = los.location;
+                destination = los.collisionObject.transform.position;
             }
-            Debug.Log("setting next");
+            //Debug.Log("setting next");
             myNavMeshAgent.SetDestination(destination);
         } catch (System.IndexOutOfRangeException e) {
             Debug.Log(e.Message);
@@ -115,6 +113,28 @@ public class GuardAI : MonoBehaviour
         } catch (System.ArgumentOutOfRangeException e) {
             Debug.Log(e.Message);
         }
+    }
 
+    void OnCollisionEnter(Collision c) {
+        if(c.gameObject.CompareTag("Detectable")) {
+            GameObject gameObject = this.gameObject.transform.GetChild(0).gameObject;
+            int i = 0;
+            while (gameObject.name != "Light") {
+                i++;
+                gameObject = this.gameObject.transform.GetChild(i).gameObject;
+            }
+            i = 0;
+            gameObject = gameObject.transform.GetChild(0).gameObject;
+            while(gameObject.name != "Cone") {
+                i++;
+                gameObject = gameObject.transform.GetChild(0).gameObject;
+            }
+            if (gameObject != null) {
+                los.foundSomething = false;
+                Destroy(c.gameObject);
+                Collider collider = gameObject.GetComponent<Collider>();
+                collider.enabled = true;
+            }
+        }
     }
 }

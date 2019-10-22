@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
+//you can only climb walls w/ the tag "climb" and thrust is climbing speed
+//i added a wall prefab if you want to use it
 public class Climbing : MonoBehaviour
 {
 
@@ -10,6 +12,7 @@ public class Climbing : MonoBehaviour
     private Rigidbody rb;
     private RigidbodyFirstPersonController cc;
     public float thrust = 2.0f;
+    private GameObject collisionObject;
 
     void Start()
     {
@@ -24,19 +27,19 @@ public class Climbing : MonoBehaviour
             Debug.Log("during climb");
             if (Input.GetKey(KeyCode.W)){
                 Debug.Log("up");
-                transform.position += Vector3.up * Time.deltaTime * thrust;
+                transform.position += collisionObject.transform.up * Time.deltaTime * thrust;
             }
 
             if (Input.GetKey(KeyCode.A)){
-                transform.position += Vector3.left * Time.deltaTime * thrust;
+                transform.position += -collisionObject.transform.right * Time.deltaTime * thrust;
             }
 
             if (Input.GetKey(KeyCode.S)){
-                transform.position += Vector3.down * Time.deltaTime * thrust;
+                transform.position += -collisionObject.transform.up * Time.deltaTime * thrust;
             }
          
             if (Input.GetKey(KeyCode.D)){
-                transform.position += Vector3.right * Time.deltaTime * thrust;
+                transform.position += collisionObject.transform.right * Time.deltaTime * thrust;
             }
         }
         if (canClimb && Input.GetKeyDown(KeyCode.E)) {
@@ -45,9 +48,9 @@ public class Climbing : MonoBehaviour
             rb.useGravity = false;
             //StartCoroutine(afterClimb());
             Debug.Log("before climb");
-            rb.constraints = rb.constraints | RigidbodyConstraints.FreezePositionZ;
+            //rb.constraints = rb.constraints | RigidbodyConstraints.FreezePositionZ;
         }
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        //rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
 
@@ -61,7 +64,7 @@ public class Climbing : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         if (other.tag == "Climb") {
             canClimb = true;
-            
+            collisionObject = other.gameObject.transform.parent.gameObject;
         }
     }
 
