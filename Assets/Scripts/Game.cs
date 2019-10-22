@@ -18,6 +18,11 @@ public class Game : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+    private void Start()
+    {
+        EventManager.TriggerEvent<InGameEvent, Vector3>(new Vector3(0, 0, 0));
+    }
+
     void Update()
     {
         if (triggerA1.IsSet && triggerA2.IsSet && triggerA3.IsSet)

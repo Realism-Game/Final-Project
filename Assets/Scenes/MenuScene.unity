@@ -1239,6 +1239,9 @@ GameObject:
   - component: {fileID: 398865275}
   - component: {fileID: 398865274}
   - component: {fileID: 398865273}
+  - component: {fileID: 398865281}
+  - component: {fileID: 398865280}
+  - component: {fileID: 398865279}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Button_trigger
@@ -1351,6 +1354,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &398865279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398865272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fc146682ae744729faeec01048c663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &398865280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398865272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44ade7ad17f64c54a084c5cffccd0fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &398865281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398865272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1525c472f82e24f8bbf55cc955173408, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &407020185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,6 +1826,9 @@ GameObject:
   - component: {fileID: 527199706}
   - component: {fileID: 527199705}
   - component: {fileID: 527199704}
+  - component: {fileID: 527199712}
+  - component: {fileID: 527199711}
+  - component: {fileID: 527199710}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -1899,6 +1941,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &527199710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527199703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85705e07909547828db34e5727e6d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &527199711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527199703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9098c2c04aa74961bf27ede2138a459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &527199712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527199703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95852839844d94a139d4db29e6bfeb57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &549718529
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,6 +4123,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1225410348}
   - component: {fileID: 1225410347}
+  - component: {fileID: 1225410350}
+  - component: {fileID: 1225410349}
   m_Layer: 0
   m_Name: SceneLoad
   m_TagString: Untagged
@@ -4078,6 +4158,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1225410349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225410346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd6da8410f00444ab6339a9a77657fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1225410350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225410346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8457ad65770594b86a5aabbcd8422479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1252139925
 GameObject:
   m_ObjectHideFlags: 0
@@ -6182,17 +6286,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3050017184044966364, guid: 781b2e2294d74492889af5483bfb8156,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioEventManager
+      objectReference: {fileID: 0}
+    - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
+        type: 3}
+      propertyPath: bearFootStepAudio.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
+        type: 3}
+      propertyPath: monkeyFootStepAudio.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
         type: 3}
       propertyPath: eventSound3DPrefab
       value: 
       objectReference: {fileID: -5235907375828804912, guid: e5a9459a4038d49a4b8abca4e35b3b0f,
         type: 3}
-    - target: {fileID: 3050017184044966364, guid: 781b2e2294d74492889af5483bfb8156,
+    - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
         type: 3}
-      propertyPath: m_Name
-      value: AudioEventManager
-      objectReference: {fileID: 0}
+      propertyPath: carsAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: ed2cc495f0de7470b88c8f0197f5deaa, type: 3}
+    - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
+        type: 3}
+      propertyPath: playerDetectionAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: b4e258f8d8fde408a80e129224634d89, type: 3}
+    - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
+        type: 3}
+      propertyPath: bearFootStepAudio.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: c24150065cd2247ff8168da779cce8e8, type: 3}
+    - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
+        type: 3}
+      propertyPath: monkeyFootStepAudio.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9bd1133f1b6e641c0b65b21d6ac49ddb, type: 3}
+    - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
+        type: 3}
+      propertyPath: gameMenuAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 130b5533b551f4d4d97bd843a781dfc0, type: 3}
+    - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
+        type: 3}
+      propertyPath: gameOverAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 0bdac6f609bd74418a94be091c9b535c, type: 3}
+    - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
+        type: 3}
+      propertyPath: inGameAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 46bf15d5776c740789785713d225b53c, type: 3}
     - target: {fileID: 1369631202143414407, guid: 781b2e2294d74492889af5483bfb8156,
         type: 3}
       propertyPath: m_LocalPosition.x

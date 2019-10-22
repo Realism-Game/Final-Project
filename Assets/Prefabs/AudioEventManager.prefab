@@ -50,12 +50,19 @@ MonoBehaviour:
   rabbitFootStepAudio:
   - {fileID: 8300000, guid: df8c218c6b2654c218c2edfc77729bc3, type: 3}
   - {fileID: 8300000, guid: 9e5e338d1c8b54bbd90ce5980797399c, type: 3}
-  bearFootStepAudio: []
-  monkeyFootStepAudio: []
+  bearFootStepAudio:
+  - {fileID: 8300000, guid: c24150065cd2247ff8168da779cce8e8, type: 3}
+  monkeyFootStepAudio:
+  - {fileID: 8300000, guid: 9bd1133f1b6e641c0b65b21d6ac49ddb, type: 3}
   guardAudio: []
   objectCollisionAudio: {fileID: 8300000, guid: 8e92e143768634e02853c3e5ce7c4a32,
     type: 3}
   keysChainAudio: {fileID: 0}
-  playerDetectionAudio: {fileID: 0}
-  carsAudio: {fileID: 0}
+  playerDetectionAudio: {fileID: 8300000, guid: b4e258f8d8fde408a80e129224634d89,
+    type: 3}
+  carsAudio: {fileID: 8300000, guid: ed2cc495f0de7470b88c8f0197f5deaa, type: 3}
   spawnAudio: {fileID: 8300000, guid: 4d4d9fe8559344df99b0cb24d473b850, type: 3}
+  gameMenuAudio: {fileID: 8300000, guid: 130b5533b551f4d4d97bd843a781dfc0, type: 3}
+  gameOverAudio: {fileID: 8300000, guid: 0bdac6f609bd74418a94be091c9b535c, type: 3}
+  inGameAudio:
+  - {fileID: 8300000, guid: 46bf15d5776c740789785713d225b53c, type: 3}
