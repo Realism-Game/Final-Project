@@ -23,11 +23,15 @@ public class CharacterInputController : MonoBehaviour
         {
             Vector3 delta = transform.forward * Time.deltaTime * speed;
             transform.position += delta;
+            Velocity = rb.velocity.magnitude;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             Vector3 delta = transform.forward * Time.deltaTime * speed;
             transform.position -= delta;
+        } else
+        {
+            Velocity = 0f;
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -61,5 +65,11 @@ public class CharacterInputController : MonoBehaviour
         {
             isGrounded = true;
         }
+    }
+
+    public float Velocity
+    {
+        get;
+        private set;
     }
 }

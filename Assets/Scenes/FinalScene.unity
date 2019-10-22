@@ -366,6 +366,7 @@ MonoBehaviour:
   triggerA2: {fileID: 1580666041}
   triggerA3: {fileID: 1345964110}
   triggerB: {fileID: 550237965}
+  canvasGroup: {fileID: 0}
 --- !u!1 &194426625
 GameObject:
   m_ObjectHideFlags: 0

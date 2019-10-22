@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class GameLoader : MonoBehaviour
 {
-    // Main func to load the game
-    public void loadGame()
+    public CanvasGroup canvasGroup;
+
+    // Main func to resume the game
+    public void resumeGame()
     {
-        // TODO
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.alpha = 0f;
+        Time.timeScale = 1f;
     }
 }
