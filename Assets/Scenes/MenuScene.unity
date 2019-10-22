@@ -1827,7 +1827,6 @@ GameObject:
   - component: {fileID: 527199705}
   - component: {fileID: 527199704}
   - component: {fileID: 527199712}
-  - component: {fileID: 527199711}
   - component: {fileID: 527199710}
   m_Layer: 0
   m_Name: Bird
@@ -1951,18 +1950,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e85705e07909547828db34e5727e6d40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &527199711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527199703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9098c2c04aa74961bf27ede2138a459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &527199712
@@ -4124,7 +4111,6 @@ GameObject:
   - component: {fileID: 1225410348}
   - component: {fileID: 1225410347}
   - component: {fileID: 1225410350}
-  - component: {fileID: 1225410349}
   m_Layer: 0
   m_Name: SceneLoad
   m_TagString: Untagged
@@ -4158,18 +4144,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1225410349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225410346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcd6da8410f00444ab6339a9a77657fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1225410350
 MonoBehaviour:
   m_ObjectHideFlags: 0

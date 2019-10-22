@@ -27,6 +27,7 @@ public class AudioEventManager : MonoBehaviour
     private UnityAction<Vector3> guardSoundEventListener;
     private UnityAction<Vector3> inGameListener;
 	private UnityAction<Vector3> gameMenuListener;
+    private UnityAction<Vector3> objectCollisionListener;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class AudioEventManager : MonoBehaviour
         monkeyFootStepEventListener = new UnityAction<Vector3>(monkeyFootstepEventHandler);
         inGameListener = new UnityAction<Vector3>(inGameAudioEventHandler);
 		gameMenuListener = new UnityAction<Vector3>(gameMenuAudioEventHandler);
+        objectCollisionListener = new UnityAction<Vector3>(objectCollisionEventHandler);
     }
 
     private void OnEnable()
@@ -44,6 +46,7 @@ public class AudioEventManager : MonoBehaviour
         EventManager.StartListening<MonkeyFootStepEvent, Vector3>(monkeyFootStepEventListener);
         EventManager.StartListening<InGameEvent, Vector3>(inGameListener);
         EventManager.StartListening<GameMenuEvent, Vector3>(gameMenuListener);
+        EventManager.StartListening<OnCollisionEvent, Vector3>(objectCollisionListener);
     }
 
     private void OnDisable()
@@ -53,6 +56,7 @@ public class AudioEventManager : MonoBehaviour
         EventManager.StopListening<MonkeyFootStepEvent, Vector3>(monkeyFootStepEventListener);
         EventManager.StopListening<InGameEvent, Vector3>(inGameListener);
         EventManager.StopListening<GameMenuEvent, Vector3>(gameMenuListener);
+        EventManager.StopListening<OnCollisionEvent, Vector3>(objectCollisionListener);
     }
 
 
@@ -132,4 +136,14 @@ public class AudioEventManager : MonoBehaviour
 			snd.audioSrc.Play();
 		}
 	}
+
+    private void objectCollisionEventHandler(Vector3 pos)
+    {
+        if (eventSound3DPrefab)
+        {
+            EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
+            snd.audioSrc.clip = this.objectCollisionAudio;
+            snd.audioSrc.Play();
+        }
+    }
 }

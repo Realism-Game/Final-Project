@@ -18,7 +18,7 @@ public class Game : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    private void Start()
+    void Start()
     {
         EventManager.TriggerEvent<InGameEvent, Vector3>(new Vector3(0, 0, 0));
     }

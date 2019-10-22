@@ -34,4 +34,9 @@ public class BearScript : MonoBehaviour
                 EventManager.TriggerEvent<BearFootStepEvent, Vector3>(transform.position);
         }
     }
+
+	private void OnCollisionEnter(Collision c)
+	{
+		EventManager.TriggerEvent<OnCollisionEvent, Vector3>(new Vector3(0, 0, 0)); // Handle collision
+	}
 }
