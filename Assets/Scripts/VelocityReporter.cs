@@ -24,7 +24,7 @@ public class VelocityReporter : MonoBehaviour {
     }
     // Update is called once per frame
     void Update () {
-        rawVelocity = (this.transform.position - prevPos) / Time.deltaTime;
+        rawVelocity = (this.transform.position - prevPos) / (Time.deltaTime + 0.0001f);
         velocity = Vector3.SmoothDamp(velocity, rawVelocity, ref smoothingParamVel, smoothingTimeFactor);
         prevPos = this.transform.position;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BearScript : MonoBehaviour
 {
-    CharacterInputController cc;
+    Bear bear;
     Vector3 lastPostion;
 
     private void setTargetTalk()
@@ -21,16 +21,16 @@ public class BearScript : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        cc = GetComponent<CharacterInputController>();
+        bear = GetComponent<Bear>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (Vector3.Distance(lastPostion, transform.position) > 5f)
+        if (Vector3.Distance(lastPostion, transform.position) > 8f)
         {
             setTargetTalk();
-            if (cc != null && cc.enabled)
+            if (bear != null && bear.enabled)
                 EventManager.TriggerEvent<BearFootStepEvent, Vector3>(transform.position);
         }
     }

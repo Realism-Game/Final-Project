@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    public CharacterInputController[] ControllableCharacters = { };
+    public GameObject[] ControllableCharacters = { };
 
     public Camera thirdPersonCamera;
 
@@ -13,9 +13,9 @@ public class CharacterManager : MonoBehaviour
     protected void DisableAllCharacters()
     {
 
-        foreach (CharacterInputController c in ControllableCharacters)
+        foreach (GameObject c in ControllableCharacters)
         {
-            c.enabled = false;
+            c.SetActive(false);
         }
 
     }
@@ -30,12 +30,11 @@ public class CharacterManager : MonoBehaviour
 
         if (charIndex >= ControllableCharacters.Length)
             charIndex = ControllableCharacters.Length - 1;
-        CharacterInputController currentChar = ControllableCharacters[charIndex];
-        currentChar.enabled = true;
+        GameObject currentChar = ControllableCharacters[charIndex];
+        currentChar.SetActive(true);
         thirdPersonCamera.transform.position = currentChar.transform.position 
-            - new Vector3(currentChar.transform.forward.x * 5, -2, currentChar.transform.forward.z * 5);
+            - new Vector3(currentChar.transform.forward.x * 3, -1.5f, currentChar.transform.forward.z * 2);
         thirdPersonCamera.transform.forward = currentChar.transform.forward;
-        
     }
 
     protected void IncrementCharacterIndex()

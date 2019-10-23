@@ -8,6 +8,7 @@ using UnityStandardAssets.Characters.ThirdPerson;
 public class GuardAI : MonoBehaviour
 {
     public GameObject[] waypoints;
+    public GameObject GameController;
     public int currWaypoint = -1;
     private Animator anim;
     private UnityEngine.AI.NavMeshAgent myNavMeshAgent;
@@ -16,6 +17,7 @@ public class GuardAI : MonoBehaviour
     private int stationary;
     private ThirdPersonCharacter character;
     private LightLineOfSight los;
+    private GameController game;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,7 @@ public class GuardAI : MonoBehaviour
         anim = GetComponent<Animator>();
         myNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         character = GetComponent<ThirdPersonCharacter>();
+        game = GameController.GetComponent<GameController>();
         setNextWaypoint();
         previousYRotate = this.transform.eulerAngles.y;
     }
@@ -31,18 +34,14 @@ public class GuardAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //anim.SetFloat("Forward", myNavMeshAgent.velocity.magnitude / myNavMeshAgent.speed);
         if (!myNavMeshAgent.pathPending) {
 
             if (myNavMeshAgent.remainingDistance == 0) {
                 setNextWaypoint();
-            } else if (stateMachine.aiState == AIStateMachine.AIState.Moving) {
-                if ((myNavMeshAgent.remainingDistance - myNavMeshAgent.stoppingDistance) >= 0.25f) {
-                    Vector3 destination = getMovingWaypointDestination();
-                    myNavMeshAgent.SetDestination(destination);
-                }
             } else if (los.foundSomething) {
-                setNextWaypoint();
+                if (stateMachine.aiState == AIStateMachine.AIState.Moving && currWaypoint != -1) {
+                    myNavMeshAgent.SetDestination(getMovingWaypointDestination());
+                }
             }
 
             if (myNavMeshAgent.remainingDistance > myNavMeshAgent.stoppingDistance)
@@ -53,40 +52,21 @@ public class GuardAI : MonoBehaviour
     }
 
     private Vector3 getMovingWaypointDestination() {
-            //Debug.Log(myNavMeshAgent.remainingDistance - myNavMeshAgent.stoppingDistance);
-            GameObject g = waypoints[this.currWaypoint];
+            GameObject g = los.collisionObject;
             Vector3 destination = g.transform.position;
-            //Debug.Log("waypoint "+destination);
-            if (stateMachine.aiState == AIStateMachine.AIState.Moving  && currWaypoint != 0) {
+            if (stateMachine.aiState == AIStateMachine.AIState.Moving  && currWaypoint != -1 && g.name == "Bear") {
                 //predict position
                 VelocityReporter reporter = g.GetComponent<VelocityReporter>();
-                /**
-                dist = (target.pos - agent.pos).Length()
-
-                lookAheadT = Dist/agent.maxSpeed
-
-                futureTarget = target.pos + lookAheadT  * target.velocity
-                **/
                 float distance = (destination - this.transform.position).magnitude;
-                float lookAheadT = distance / myNavMeshAgent.speed;
+                float lookAheadT = Mathf.Clamp(0.0f, distance / myNavMeshAgent.speed, 1.0f);
                 Vector3 futureTarget = destination + lookAheadT * reporter.velocity;
                 destination = futureTarget;
-                /**
-                Debug.Log("distance "+distance);
-                Debug.Log("lookAheadT " + lookAheadT);
-                Debug.Log("minion speed "+myNavMeshAgent.speed);
-                Debug.Log("waypoint speed "+reporter.velocity.magnitude);
-                Debug.Log("waypoint velocity "+reporter.velocity);
-                Debug.Log("waypoint rawvelocity "+reporter.rawVelocity);
-                **/
-                //Debug.Log("futureTarget "+futureTarget);
             }
             return destination;
     }
 
     private void setNextWaypoint() {
         try {
-
             if (waypoints == null || waypoints.Length == 0) {
                 throw new System.IndexOutOfRangeException();
             }
@@ -96,25 +76,25 @@ public class GuardAI : MonoBehaviour
             } else {
                 this.currWaypoint++;
             }
-            //Debug.Log(currWaypoint);
             GameObject g = waypoints[this.currWaypoint];
             Vector3 destination = g.transform.position;
-            //Debug.Log("waypoint "+destination);
-            if (stateMachine.aiState == AIStateMachine.AIState.Moving && currWaypoint != 0) {
-                destination = getMovingWaypointDestination();
-            }
-            if (los.foundSomething) {
-                destination = los.location;
-            }
-            Debug.Log("setting next");
             myNavMeshAgent.SetDestination(destination);
         } catch (System.IndexOutOfRangeException e) {
             Debug.Log(e.Message);
-            // Set IndexOutOfRangeException to the new exception's InnerException.
-            //throw new System.ArgumentOutOfRangeException("index parameter is out of range.", e);
         } catch (System.ArgumentOutOfRangeException e) {
             Debug.Log(e.Message);
         }
+    }
 
+    void OnCollisionEnter(Collision c) {
+        if(c.gameObject.CompareTag("Detectable")) {
+            GameObject gameObject = c.gameObject;
+            los.foundSomething = false;
+            Collider collider = gameObject.GetComponent<Collider>();
+            collider.enabled = true;
+            if (gameObject.name == "Bear") {
+                game.GameOver = true;
+            }
+        }
     }
 }
