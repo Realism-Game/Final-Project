@@ -8,7 +8,7 @@ public class LightLineOfSight: MonoBehaviour{
     private bool maybeFoundSomething;
     public GameObject collisionObject;
     public LayerMask layerMask;
-    public float timeTillLost = 1.0f;
+    public float timeTillLost = 3.0f;
     private Collider collider;
     private GameObject parent;
     private bool maybeLost;
@@ -31,7 +31,7 @@ public class LightLineOfSight: MonoBehaviour{
                 foundSomething = false;
                 collisionObject = null;
             } else {
-                Debug.Log("collision");
+                //Debug.Log("collision");
                 foundSomething = true;
                 //collider.enabled = false;
             }
@@ -57,7 +57,7 @@ public class LightLineOfSight: MonoBehaviour{
                         maybeFoundSomething = true;
                     }                   
                 }
-                Debug.Log("maybe a collision");
+                //Debug.Log("maybe a collision");
                 //collider.enabled = false;
                 //StartCoroutine(afterTrigger());
             }
@@ -72,13 +72,13 @@ public class LightLineOfSight: MonoBehaviour{
             collisionObject = null;
             foundSomething = false;
             maybeFoundSomething = false;
-            Debug.Log("moving to last seen point");
+            //Debug.Log("moving to last seen point");
         }
     }
 
     void OnTriggerExit(Collider c) {
         if (c.gameObject.CompareTag("Detectable") && foundSomething) {
-            Debug.Log("maybe lost quarry");
+            //Debug.Log("maybe lost quarry");
             maybeLost = true;
             foundSomething = false;
             StartCoroutine(afterTrigger());
