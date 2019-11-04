@@ -19,7 +19,7 @@ public class AudioEventManager : MonoBehaviour
     public AudioClip gameOverAudio;
     public AudioClip[] inGameAudio;
 
-    private UnityAction<Vector3> bearFootStepEventListener;
+    private UnityAction<Vector3, int> bearFootStepEventListener;
     private UnityAction<Vector3> guardSoundEventListener;
     private UnityAction<Vector3> inGameListener;
 	private UnityAction<Vector3> gameMenuListener;
@@ -27,7 +27,7 @@ public class AudioEventManager : MonoBehaviour
 
     private void Awake()
     {
-        bearFootStepEventListener = new UnityAction<Vector3>(bearFootstepEventHandler);
+        bearFootStepEventListener = new UnityAction<Vector3, int>(bearFootstepEventHandler);
         inGameListener = new UnityAction<Vector3>(inGameAudioEventHandler);
 		gameMenuListener = new UnityAction<Vector3>(gameMenuAudioEventHandler);
         objectCollisionListener = new UnityAction<Vector3>(objectCollisionEventHandler);
@@ -36,7 +36,7 @@ public class AudioEventManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.StartListening<BearFootStepEvent, Vector3>(bearFootStepEventListener);
+        EventManager.StartListening<BearFootStepEvent, Vector3, int>(bearFootStepEventListener);
         EventManager.StartListening<InGameEvent, Vector3>(inGameListener);
         EventManager.StartListening<GameMenuEvent, Vector3>(gameMenuListener);
         EventManager.StartListening<OnCollisionEvent, Vector3>(objectCollisionListener);
@@ -45,7 +45,7 @@ public class AudioEventManager : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.StopListening<BearFootStepEvent, Vector3>(bearFootStepEventListener);
+        EventManager.StopListening<BearFootStepEvent, Vector3, int>(bearFootStepEventListener);
         EventManager.StopListening<InGameEvent, Vector3>(inGameListener);
         EventManager.StopListening<GameMenuEvent, Vector3>(gameMenuListener);
         EventManager.StopListening<OnCollisionEvent, Vector3>(objectCollisionListener);
@@ -54,7 +54,7 @@ public class AudioEventManager : MonoBehaviour
 
 
 
-    private void bearFootstepEventHandler(Vector3 pos)
+    private void bearFootstepEventHandler(Vector3 pos, int characterVol)
     {
 
         if (spawnAudio)
@@ -66,6 +66,7 @@ public class AudioEventManager : MonoBehaviour
 
             snd.audioSrc.minDistance = 5f;
             snd.audioSrc.maxDistance = 100f;
+            snd.audioSrc.volume = (float) characterVol;
 
             snd.audioSrc.Play();
         }

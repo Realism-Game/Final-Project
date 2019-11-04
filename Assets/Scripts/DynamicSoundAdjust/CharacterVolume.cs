@@ -6,7 +6,7 @@ using TMPro;
 public class CharacterVolume : MonoBehaviour
 {
     TextMeshProUGUI currentCharacterVolume;
-    public int characterVolume;
+    public int characterVolume = 100;
 
     void Start() {
         currentCharacterVolume = GetComponent<TextMeshProUGUI> ();
