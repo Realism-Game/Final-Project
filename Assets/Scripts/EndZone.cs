@@ -5,11 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class EndZone : MonoBehaviour
 {
+	private GameWin gamewin;
+	public GameObject gameWin;
+
+	void Awake()
+    {
+        gamewin = gameWin.GetComponent<GameWin>();
+    }
+
     void OnTriggerEnter(Collider c)
     {
     	if (c.gameObject.name == "Bear")
     	{
-    		SceneManager.LoadScene("MenuScene");
+			gamewin.gameWin = true;
     	}
     }
 }
