@@ -24,6 +24,7 @@ public class AudioEventManager : MonoBehaviour
     private UnityAction<Vector3> inGameListener;
 	private UnityAction<Vector3> gameMenuListener;
     private UnityAction<Vector3> objectCollisionListener;
+    private UnityAction<Vector3> detectionEventListener;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class AudioEventManager : MonoBehaviour
 		gameMenuListener = new UnityAction<Vector3>(gameMenuAudioEventHandler);
         objectCollisionListener = new UnityAction<Vector3>(objectCollisionEventHandler);
         guardSoundEventListener = new UnityAction<Vector3>(guardSoundEventHandler);
+        detectionEventListener = new UnityAction<Vector3>(detectionEventHandler);
     }
 
     private void OnEnable()
@@ -40,7 +42,8 @@ public class AudioEventManager : MonoBehaviour
         EventManager.StartListening<InGameEvent, Vector3>(inGameListener);
         EventManager.StartListening<GameMenuEvent, Vector3>(gameMenuListener);
         EventManager.StartListening<OnCollisionEvent, Vector3>(objectCollisionListener);
-        EventManager.StartListening<OnCollisionEvent, Vector3>(guardSoundEventListener);
+        EventManager.StartListening<GuardSoundEvent, Vector3>(guardSoundEventListener);
+        EventManager.StartListening<DetectionEvent, Vector3>(detectionEventListener);
     }
 
     private void OnDisable()
@@ -49,10 +52,19 @@ public class AudioEventManager : MonoBehaviour
         EventManager.StopListening<InGameEvent, Vector3>(inGameListener);
         EventManager.StopListening<GameMenuEvent, Vector3>(gameMenuListener);
         EventManager.StopListening<OnCollisionEvent, Vector3>(objectCollisionListener);
-        EventManager.StopListening<OnCollisionEvent, Vector3>(guardSoundEventListener);
+        EventManager.StopListening<GuardSoundEvent, Vector3>(guardSoundEventListener);
+        EventManager.StopListening<DetectionEvent, Vector3>(detectionEventListener);
     }
 
 
+    private void detectionEventHandler(Vector3 pos) {
+        if (eventSound3DPrefab)
+        {
+            EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
+            snd.audioSrc.clip = this.playerDetectionAudio;
+            snd.audioSrc.Play();
+        }
+    }
 
     private void bearFootstepEventHandler(Vector3 pos, int characterVol)
     {
