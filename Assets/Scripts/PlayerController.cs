@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
 	Animator animator;
 	Transform cameraT;
 
+	private bool isWalking = false;
+	private float sleepWaitTime = 2.0f;
+	private float idleSwap = 0.0f;
+	private float timer = 0.0f;
+	
 	void Start () {
 		animator = GetComponent<Animator> ();
 		cameraT = Camera.main.transform;
@@ -41,5 +46,29 @@ public class PlayerController : MonoBehaviour
 		float animationSpeedPercent = ((running) ? 1 : .5f) * inputDir.magnitude;
 		animator.SetFloat ("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
 
+
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+        {
+        	animator.SetBool("IsWalk", true);
+        	animator.SetBool("IsIdle", false);
+        	animator.SetBool("IsSit", false);
+        	isWalking = true;
+        	timer = 0.0f;
+        }
+        if (!isWalking)
+        {
+	    	animator.SetBool("IsWalk", false);
+	    	animator.SetBool("IsIdle", true);
+        	timer += Time.deltaTime;
+        	
+        	if (timer > sleepWaitTime) {
+				animator.SetBool("IsSit", true);
+				animator.SetBool("IsIdle", false);
+        	}
+        }
+        else
+        {
+        	isWalking = false;
+        }
 	}
 }
