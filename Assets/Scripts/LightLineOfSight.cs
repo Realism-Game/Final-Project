@@ -42,7 +42,6 @@ public class LightLineOfSight: MonoBehaviour{
 
     void OnTriggerEnter(Collider c) {
         if(c.gameObject.CompareTag("Detectable")) {
-            //Debug.Log(c.GetComponent<Collider>().name);
             GameObject gameObject = c.gameObject;
             if (gameObject != null) {
                 if (!foundSomething) {
