@@ -47,11 +47,11 @@ public class PlayerController : MonoBehaviour
 		animator.SetFloat ("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
 
 
-		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
         	animator.SetBool("IsWalk", true);
         	animator.SetBool("IsIdle", false);
-        	animator.SetBool("IsSit", false);
+        	animator.SetBool("IsSleep", false);
         	isWalking = true;
         	timer = 0.0f;
         }
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         	timer += Time.deltaTime;
         	
         	if (timer > sleepWaitTime) {
-				animator.SetBool("IsSit", true);
+				animator.SetBool("IsSleep", true);
 				animator.SetBool("IsIdle", false);
         	}
         }
