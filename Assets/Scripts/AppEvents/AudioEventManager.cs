@@ -18,6 +18,8 @@ public class AudioEventManager : MonoBehaviour
     public AudioClip gameMenuAudio;
     public AudioClip gameOverAudio;
     public AudioClip[] inGameAudio;
+    public AudioClip youWinAudio;
+    public AudioClip youLoseAudio;
 
     private UnityAction<Vector3, int> bearFootStepEventListener;
     private UnityAction<Vector3> guardSoundEventListener;
@@ -25,6 +27,8 @@ public class AudioEventManager : MonoBehaviour
 	private UnityAction<Vector3> gameMenuListener;
     private UnityAction<Vector3> objectCollisionListener;
     private UnityAction<Vector3> detectionEventListener;
+    private UnityAction<Vector3> youWinListener;
+    private UnityAction<Vector3> youLoseListener;
 
     private void Awake()
     {
@@ -34,6 +38,8 @@ public class AudioEventManager : MonoBehaviour
         objectCollisionListener = new UnityAction<Vector3>(objectCollisionEventHandler);
         guardSoundEventListener = new UnityAction<Vector3>(guardSoundEventHandler);
         detectionEventListener = new UnityAction<Vector3>(detectionEventHandler);
+        youWinListener = new UnityAction<Vector3>(youWinEventHandler);
+        youLoseListener = new UnityAction<Vector3>(youLoseEventHandler);
     }
 
     private void OnEnable()
@@ -44,6 +50,8 @@ public class AudioEventManager : MonoBehaviour
         EventManager.StartListening<OnCollisionEvent, Vector3>(objectCollisionListener);
         EventManager.StartListening<GuardSoundEvent, Vector3>(guardSoundEventListener);
         EventManager.StartListening<DetectionEvent, Vector3>(detectionEventListener);
+        EventManager.StartListening<YouWinEvent, Vector3>(youWinEventHandler);
+        EventManager.StartListening<YouLoseEvent, Vector3>(youLoseEventHandler);
     }
 
     private void OnDisable()
@@ -54,15 +62,42 @@ public class AudioEventManager : MonoBehaviour
         EventManager.StopListening<OnCollisionEvent, Vector3>(objectCollisionListener);
         EventManager.StopListening<GuardSoundEvent, Vector3>(guardSoundEventListener);
         EventManager.StopListening<DetectionEvent, Vector3>(detectionEventListener);
+        EventManager.StopListening<YouWinEvent, Vector3>(youWinEventHandler);
+        EventManager.StopListening<YouLoseEvent, Vector3>(youLoseEventHandler);
     }
 
+    private void youWinEventHandler(Vector3 pos) {
+        if (eventSound3DPrefab)
+        {
+            EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
+            snd.audioSrc.clip = this.youWinAudio;
+            snd.audioSrc.minDistance = 5f;
+            snd.audioSrc.maxDistance = 100f;
+            snd.audioSrc.loop = true;
+            snd.audioSrc.Play();
+        }
+    }
+
+    private void youLoseEventHandler(Vector3 pos) {
+        if (eventSound3DPrefab)
+        {
+            EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
+            snd.audioSrc.clip = this.youLoseAudio;
+            snd.audioSrc.minDistance = 5f;
+            snd.audioSrc.maxDistance = 100f;
+            snd.audioSrc.loop = true;
+            snd.audioSrc.Play();
+        }
+    }
 
     private void detectionEventHandler(Vector3 pos) {
         if (eventSound3DPrefab)
         {
             EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
             snd.audioSrc.clip = this.playerDetectionAudio;
+            snd.audioSrc.time = 0f;
             snd.audioSrc.Play();
+            snd.audioSrc.SetScheduledEndTime(AudioSettings.dspTime+(2f - 0f));
         }
     }
 
