@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: e8cb288bd28ef4f4bba0b66661afe41f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - eventSound3DPrefab: {instanceID: 0}
+  - objectFallToGroundAudio: {instanceID: 0}
+  - objectCollisionAudio: {instanceID: 0}
+  - keysChainAudio: {instanceID: 0}
+  - playerDetectionAudio: {instanceID: 0}
+  - carsAudio: {instanceID: 0}
+  - spawnAudio: {instanceID: 0}
+  - gameMenuAudio: {instanceID: 0}
+  - gameOverAudio: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
