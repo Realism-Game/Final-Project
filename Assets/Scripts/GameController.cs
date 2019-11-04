@@ -9,15 +9,15 @@ public class GameController : MonoBehaviour
 	private GameOver gameover;
     // Update is called once per frame
     void Awake()
-    {	
-    	gameover = gameOver.GetComponent<GameOver>();
+    {
+        gameover = gameOver.GetComponent<GameOver>();
     }
 
     void Update()
     {
         if (GameOver)
         {
-        	gameover.gameOver = true;
+            gameover.gameOver = true;
         }
     }
 }

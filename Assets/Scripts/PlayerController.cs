@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float walkSpeed = 2;
+  public float walkSpeed = 2;
 	public float runSpeed = 6;
 
 	public float turnSmoothTime = 0.2f;
@@ -46,29 +46,28 @@ public class PlayerController : MonoBehaviour
 		float animationSpeedPercent = ((running) ? 1 : .5f) * inputDir.magnitude;
 		animator.SetFloat ("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
 
-
 		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
+      {
         	animator.SetBool("IsWalk", true);
         	animator.SetBool("IsIdle", false);
         	animator.SetBool("IsSleep", false);
         	isWalking = true;
         	timer = 0.0f;
-        }
-        if (!isWalking)
-        {
+      }
+      if (!isWalking)
+      {
 	    	animator.SetBool("IsWalk", false);
 	    	animator.SetBool("IsIdle", true);
-        	timer += Time.deltaTime;
+        timer += Time.deltaTime;
         	
-        	if (timer > sleepWaitTime) {
-				animator.SetBool("IsSleep", true);
-				animator.SetBool("IsIdle", false);
-        	}
+        if (timer > sleepWaitTime) {
+				  animator.SetBool("IsSleep", true);
+				  animator.SetBool("IsIdle", false);
         }
-        else
-        {
-        	isWalking = false;
-        }
+      }
+      else
+      {
+        isWalking = false;
+      }
 	}
 }
