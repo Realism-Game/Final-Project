@@ -11,7 +11,6 @@ public class AudioEventManager : MonoBehaviour
     public AudioClip[] bearFootStepAudio;
     public AudioClip[] guardAudio;
     public AudioClip objectCollisionAudio;
-    public AudioClip keysChainAudio;
     public AudioClip playerDetectionAudio;
     public AudioClip carsAudio;
     public AudioClip spawnAudio;
@@ -24,7 +23,7 @@ public class AudioEventManager : MonoBehaviour
     private UnityAction<Vector3, int> bearFootStepEventListener;
     private UnityAction<Vector3> guardSoundEventListener;
     private UnityAction<Vector3> inGameListener;
-	private UnityAction<Vector3> gameMenuListener;
+	private UnityAction<Vector3, float> gameMenuListener;
     private UnityAction<Vector3> objectCollisionListener;
     private UnityAction<Vector3> detectionEventListener;
     private UnityAction<Vector3> youWinListener;
@@ -34,7 +33,7 @@ public class AudioEventManager : MonoBehaviour
     {
         bearFootStepEventListener = new UnityAction<Vector3, int>(bearFootstepEventHandler);
         inGameListener = new UnityAction<Vector3>(inGameAudioEventHandler);
-		gameMenuListener = new UnityAction<Vector3>(gameMenuAudioEventHandler);
+		gameMenuListener = new UnityAction<Vector3, float>(gameMenuAudioEventHandler);
         objectCollisionListener = new UnityAction<Vector3>(objectCollisionEventHandler);
         guardSoundEventListener = new UnityAction<Vector3>(guardSoundEventHandler);
         detectionEventListener = new UnityAction<Vector3>(detectionEventHandler);
@@ -46,7 +45,7 @@ public class AudioEventManager : MonoBehaviour
     {
         EventManager.StartListening<BearFootStepEvent, Vector3, int>(bearFootStepEventListener);
         EventManager.StartListening<InGameEvent, Vector3>(inGameListener);
-        EventManager.StartListening<GameMenuEvent, Vector3>(gameMenuListener);
+        EventManager.StartListening<GameMenuEvent, Vector3, float>(gameMenuListener);
         EventManager.StartListening<OnCollisionEvent, Vector3>(objectCollisionListener);
         EventManager.StartListening<GuardSoundEvent, Vector3>(guardSoundEventListener);
         EventManager.StartListening<DetectionEvent, Vector3>(detectionEventListener);
@@ -58,7 +57,7 @@ public class AudioEventManager : MonoBehaviour
     {
         EventManager.StopListening<BearFootStepEvent, Vector3, int>(bearFootStepEventListener);
         EventManager.StopListening<InGameEvent, Vector3>(inGameListener);
-        EventManager.StopListening<GameMenuEvent, Vector3>(gameMenuListener);
+        EventManager.StopListening<GameMenuEvent, Vector3, float>(gameMenuListener);
         EventManager.StopListening<OnCollisionEvent, Vector3>(objectCollisionListener);
         EventManager.StopListening<GuardSoundEvent, Vector3>(guardSoundEventListener);
         EventManager.StopListening<DetectionEvent, Vector3>(detectionEventListener);
@@ -149,7 +148,7 @@ public class AudioEventManager : MonoBehaviour
         }
     }
 
-	private void gameMenuAudioEventHandler(Vector3 pos)
+	private void gameMenuAudioEventHandler(Vector3 pos, float menuVolume)
 	{
 		if (eventSound3DPrefab)
 		{
@@ -159,6 +158,7 @@ public class AudioEventManager : MonoBehaviour
 			snd.audioSrc.maxDistance = 100f;
 			snd.audioSrc.loop = true; // Let the scene always play music
 			snd.audioSrc.Play();
+            snd.audioSrc.volume = menuVolume;
 		}
 	}
 

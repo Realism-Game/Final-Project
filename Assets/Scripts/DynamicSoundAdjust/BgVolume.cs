@@ -6,11 +6,12 @@ using TMPro;
 public class BgVolume : MonoBehaviour
 {
     TextMeshProUGUI currentBgVolume;
-    public int backgroundVolume;
+    public int backgroundVolume = 100;
+    public AudioSource gameMenuAudio;
+    public AudioSource bgAudio;
 
     void Start() {
         currentBgVolume = GetComponent<TextMeshProUGUI> ();
-        backgroundVolume = 100; // Set default value when start game
         currentBgVolume.text = backgroundVolume.ToString() + "/100";
     }
 
@@ -18,5 +19,9 @@ public class BgVolume : MonoBehaviour
     {
         backgroundVolume = Mathf.RoundToInt(value * 100);
         currentBgVolume.text = backgroundVolume.ToString() + "/100";
+
+        float newVolumeValue = (float) (backgroundVolume / 100);
+        gameMenuAudio.volume = newVolumeValue;
+        bgAudio.volume = newVolumeValue;
     }
 }
