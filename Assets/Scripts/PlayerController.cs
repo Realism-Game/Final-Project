@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float walkSpeed = 2;
-	public float runSpeed = 6;
+    public float walkSpeed = 1;
+	public float runSpeed = 2;
 
 	public float turnSmoothTime = 0.2f;
 	float turnSmoothVelocity;
@@ -46,7 +46,12 @@ public class PlayerController : MonoBehaviour
 		float animationSpeedPercent = ((running) ? 1 : .5f) * inputDir.magnitude;
 		animator.SetFloat ("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
 
-
+		if (Input.GetKey(KeyCode.LeftShift)) {
+			animator.SetBool("IsRun", true);
+		} else {
+			animator.SetBool("IsRun", false);
+		}
+		
 		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
         	animator.SetBool("IsWalk", true);
