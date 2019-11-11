@@ -18,7 +18,7 @@ public class EndZone : MonoBehaviour
     	if (c.gameObject.name == "Bear")
     	{
 			gamewin.gameWin = true;
-			EventManager.TriggerEvent<YouWinEvent, Vector3>(new Vector3(0, 0, 0));
+			// EventManager.TriggerEvent<YouWinEvent, Vector3>(new Vector3(0, 0, 0));
     	}
     }
 }
