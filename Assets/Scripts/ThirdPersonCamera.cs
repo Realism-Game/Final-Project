@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
-    public bool lockCursor;
+  public bool lockCursor;
     //was 10 sensitive
 	public float mouseSensitivity = 3;
 	public Transform target;
@@ -16,9 +16,6 @@ public class ThirdPersonCamera : MonoBehaviour
 	Vector3 rotationSmoothVelocity;
 	Vector3 currentRotation;
 
-	public float minYRotation = 25;
-	public float maxYRotation = -85;
-	
 	float yaw;
 	float pitch;
 

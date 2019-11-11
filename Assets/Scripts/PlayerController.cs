@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float walkSpeed = 1;
+  public float walkSpeed = 1;
 	public float runSpeed = 2;
 
 	public float turnSmoothTime = 0.2f;
@@ -75,5 +75,5 @@ public class PlayerController : MonoBehaviour
         {
         	isWalking = false;
         }
-	}
+	  }
 }
