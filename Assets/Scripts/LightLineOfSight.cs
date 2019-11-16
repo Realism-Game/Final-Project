@@ -12,6 +12,7 @@ public class LightLineOfSight: MonoBehaviour{
     private Collider collider;
     private GameObject parent;
     private bool maybeLost;
+    public static bool isPlaying = false;
 
     void Start()
     {
@@ -49,8 +50,10 @@ public class LightLineOfSight: MonoBehaviour{
                     //Debug.DrawRay(parent.transform.position, parent.transform.TransformDirection(Vector3.forward) * distance, Color.black, 5.0f);
                     maybeFoundSomething = true;
                     collisionObject = gameObject;
-                    Debug.Log("HERE Found some thing");
-                    EventManager.TriggerEvent<DetectionEvent, Vector3>(new Vector3(0, 0, 0)); // Add sound detection
+                    if (!isPlaying) {
+                        EventManager.TriggerEvent<DetectionEvent, Vector3>(new Vector3(0, 0, 0)); // Add sound detection
+                        isPlaying = true;
+                    }
                 } else {
                     //making sure you don't switch targets
                     if (collisionObject == gameObject) {
@@ -62,6 +65,8 @@ public class LightLineOfSight: MonoBehaviour{
                 //StartCoroutine(afterTrigger());
             }
             maybeLost = false;
+        } else {
+            isPlaying = false;
         }
     }
 

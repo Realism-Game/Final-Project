@@ -30,6 +30,10 @@ public class EventSound3D : MonoBehaviour
             case "grizzlybear":
                 setVolume(((float) CharacterVolume.characterVolume / 100.0f));
                 break;
+            case "Detection":
+                if (!LightLineOfSight.isPlaying)
+                    audioSrc.Stop();
+                break;
             default:
                 setVolume(((float) BgVolume.backgroundVolume / 100.0f));
                 break;
