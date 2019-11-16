@@ -94,9 +94,7 @@ public class AudioEventManager : MonoBehaviour
         {
             EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
             snd.audioSrc.clip = this.playerDetectionAudio;
-            // snd.audioSrc.time = 0f;
             snd.audioSrc.Play();
-            // snd.audioSrc.SetScheduledEndTime(AudioSettings.dspTime+(2f - 0f));
         }
     }
 
@@ -109,7 +107,6 @@ public class AudioEventManager : MonoBehaviour
             snd.audioSrc.clip = this.bearFootStepAudio[0];
             snd.audioSrc.minDistance = 5f;
             snd.audioSrc.maxDistance = 100f;
-            // snd.audioSrc.volume = ((float) characterVol / 100.0f);
             snd.audioSrc.Play();
         }
     }
