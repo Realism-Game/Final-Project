@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public float walkSpeed = 1;
-	public float runSpeed = 2;
+  	private float walkSpeed = 0.55f;
+	private float runSpeed = 1;
 
-	public float turnSmoothTime = 0.2f;
+	private float turnSmoothTime = 0.2f;
 	float turnSmoothVelocity;
 
-	public float speedSmoothTime = 0.1f;
+	private float speedSmoothTime = 0.1f;
 	float speedSmoothVelocity;
 	float currentSpeed;
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 				animator.SetBool("IsRun", false);
 			}else if (stamina < maxStamina)
 			{
-				stamina += Time.deltaTime/4;
+				stamina += Time.deltaTime/6;
 				staminaBar.value = stamina;
 			}
 		}
@@ -107,5 +107,5 @@ public class PlayerController : MonoBehaviour
         {
         	isWalking = false;
         }
-	}
+	  }
 }

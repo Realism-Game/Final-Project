@@ -42,20 +42,20 @@ public class LightLineOfSight: MonoBehaviour{
 
     void OnTriggerEnter(Collider c) {
         if(c.gameObject.CompareTag("Detectable")) {
-            //Debug.Log(c.GetComponent<Collider>().name);
             GameObject gameObject = c.gameObject;
             if (gameObject != null) {
                 if (!foundSomething) {
                     float distance = Vector3.Distance(parent.transform.position, gameObject.transform.position);
                     //Debug.DrawRay(parent.transform.position, parent.transform.TransformDirection(Vector3.forward) * distance, Color.black, 5.0f);
-                    
                     maybeFoundSomething = true;
                     collisionObject = gameObject;
+                    Debug.Log("HERE Found some thing");
+                    EventManager.TriggerEvent<DetectionEvent, Vector3>(new Vector3(0, 0, 0)); // Add sound detection
                 } else {
                     //making sure you don't switch targets
                     if (collisionObject == gameObject) {
                         maybeFoundSomething = true;
-                    }                   
+                    }
                 }
                 //Debug.Log("maybe a collision");
                 //collider.enabled = false;
