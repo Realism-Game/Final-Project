@@ -3,6 +3,6 @@ using System.Collections;
 using UnityEngine.Events;
 
 
-public class GameMenuEvent : UnityEvent<Vector3, float>
+public class GameMenuEvent : UnityEvent<Vector3>
 {
 }

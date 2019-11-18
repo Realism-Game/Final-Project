@@ -3,4 +3,4 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BearFootStepEvent : UnityEvent<Vector3, int> {}
+public class BearFootStepEvent : UnityEvent<Vector3> {}

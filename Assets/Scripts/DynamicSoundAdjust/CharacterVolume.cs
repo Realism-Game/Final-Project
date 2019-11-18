@@ -6,11 +6,10 @@ using TMPro;
 public class CharacterVolume : MonoBehaviour
 {
     TextMeshProUGUI currentCharacterVolume;
-    public int characterVolume = 100;
+    public static int characterVolume = 100;
 
     void Start() {
         currentCharacterVolume = GetComponent<TextMeshProUGUI> ();
-        characterVolume = 100; // Set default value when start game
         currentCharacterVolume.text = characterVolume.ToString() + "/100";
     }
 

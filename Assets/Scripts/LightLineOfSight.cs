@@ -11,13 +11,15 @@ public class LightLineOfSight: MonoBehaviour{
     public float timeTillLost = 3.0f;
     private Collider collider;
     private GameObject parent;
-    private bool maybeLost;
+    public static bool maybeLost;
+    public static bool isPlaying = false;
 
     void Start()
     {
         collider = GetComponent<Collider>();
         parent = this.transform.parent.gameObject;
         parent = parent.transform.gameObject;
+        maybeLost = false;
     }
 
     void FixedUpdate() {
@@ -27,17 +29,26 @@ public class LightLineOfSight: MonoBehaviour{
         if (maybeFoundSomething) {
             float distance = Vector3.Distance(parent.transform.position, collisionObject.transform.position);
             if (Physics.Raycast(parent.transform.position, parent.transform.TransformDirection(Vector3.forward), out hit, distance, layerMask)){
-                Debug.DrawRay(parent.transform.position, parent.transform.TransformDirection(Vector3.forward) * distance, Color.red, 5.0f);         
+                Debug.DrawRay(parent.transform.position, parent.transform.TransformDirection(Vector3.forward) * distance, Color.red, 5.0f);
                 foundSomething = false;
+                isPlaying = false;
+                maybeLost = true;
                 collisionObject = null;
             } else {
-                //Debug.Log("collision");
                 foundSomething = true;
+                maybeLost = false;
                 //collider.enabled = false;
             }
             maybeFoundSomething = false;
         }
 
+        // Play guard detection sound
+        if (foundSomething) {
+            if (!isPlaying) {
+                isPlaying = true;
+                EventManager.TriggerEvent<DetectionEvent, Vector3>(new Vector3(0, 0, 0)); // Add sound detection
+            }
+        }
     }
 
     void OnTriggerEnter(Collider c) {
@@ -49,8 +60,6 @@ public class LightLineOfSight: MonoBehaviour{
                     //Debug.DrawRay(parent.transform.position, parent.transform.TransformDirection(Vector3.forward) * distance, Color.black, 5.0f);
                     maybeFoundSomething = true;
                     collisionObject = gameObject;
-                    Debug.Log("HERE Found some thing");
-                    EventManager.TriggerEvent<DetectionEvent, Vector3>(new Vector3(0, 0, 0)); // Add sound detection
                 } else {
                     //making sure you don't switch targets
                     if (collisionObject == gameObject) {
@@ -79,7 +88,7 @@ public class LightLineOfSight: MonoBehaviour{
     void OnTriggerExit(Collider c) {
         if (c.gameObject.CompareTag("Detectable") && foundSomething) {
             //Debug.Log("maybe lost quarry");
-            maybeLost = true;
+            // maybeLost = true;
             foundSomething = false;
             StartCoroutine(afterTrigger());
         }

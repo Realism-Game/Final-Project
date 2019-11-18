@@ -8495,7 +8495,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerDetectionAudio
       value: 
-      objectReference: {fileID: 8300000, guid: b0180e080fc2b42d191c4c99586b7637, type: 3}
+      objectReference: {fileID: 8300000, guid: ae143cbf10ef345f48659a6318697f89, type: 3}
     - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
         type: 3}
       propertyPath: bearFootStepAudio.Array.data[0]

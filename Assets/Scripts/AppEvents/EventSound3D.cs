@@ -6,12 +6,16 @@ using UnityEngine;
 public class EventSound3D : MonoBehaviour
 {
     public AudioSource audioSrc;
+    private float musicVolume = 1.0f; // Default sound
 
     private void Awake()
     {
         audioSrc = GetComponent<AudioSource>();
     }
 
+    private void setVolume(float vol) {
+        musicVolume = vol;
+    }
 
     void Update()
     {
@@ -19,5 +23,21 @@ public class EventSound3D : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        // Switch checking audio sound volume
+        switch (audioSrc.clip.name.ToString())
+        {
+            case "grizzlybear":
+                setVolume(((float) CharacterVolume.characterVolume / 100.0f));
+                break;
+            case "DetectionSound":
+                if (LightLineOfSight.maybeLost)
+                    Destroy(this.gameObject);
+                break;
+            default:
+                setVolume(((float) BgVolume.backgroundVolume / 100.0f));
+                break;
+        }
+        audioSrc.volume = musicVolume;
     }
 }
