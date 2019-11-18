@@ -5,14 +5,12 @@ using UnityEngine.Events;
 
 public class BearFootStepEmitter : MonoBehaviour
 {
-    CharacterVolume characterVol;
     public void Start()
     {
-
-        InvokeRepeating("ExecuteFootstep", 2.0f, 10.0f);
+        InvokeRepeating("ExecuteFootstep", 2.0f, 10.0f); // Executing every 10s
     }
 
     private void ExecuteFootstep() {
-        EventManager.TriggerEvent<BearFootStepEvent, Vector3, int>(transform.position, 100);
+        EventManager.TriggerEvent<BearFootStepEvent, Vector3>(transform.position);
     }
 }
