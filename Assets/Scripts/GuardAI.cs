@@ -139,7 +139,7 @@ public class GuardAI : MonoBehaviour
             collider.enabled = true;
             if (gameObject.name == "Bear") {
                 game.GameOver = true;
-                EventManager.TriggerEvent<YouLoseEvent, Vector3>(new Vector3(0, 0, 0));
+                // EventManager.TriggerEvent<YouLoseEvent, Vector3>(new Vector3(0, 0, 0));
             }
         }
     }

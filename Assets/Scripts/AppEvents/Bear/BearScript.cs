@@ -6,7 +6,6 @@ public class BearScript : MonoBehaviour
 {
     Bear bear;
     Vector3 lastPostion;
-    CharacterVolume characterVol;
 
     private void setTargetTalk()
     {
@@ -23,19 +22,6 @@ public class BearScript : MonoBehaviour
     private void Awake()
     {
         bear = GetComponent<Bear>();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        if (Vector3.Distance(lastPostion, transform.position) > 8f)
-        {
-            setTargetTalk();
-            if (bear != null && bear.enabled) {
-                Debug.Log(characterVol.characterVolume);
-                EventManager.TriggerEvent<BearFootStepEvent, Vector3, int>(transform.position, characterVol.characterVolume);
-            }
-        }
     }
 
 	private void OnCollisionEnter(Collision c)

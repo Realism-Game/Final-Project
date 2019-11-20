@@ -11,7 +11,6 @@ public class AudioEventManager : MonoBehaviour
     public AudioClip[] bearFootStepAudio;
     public AudioClip[] guardAudio;
     public AudioClip objectCollisionAudio;
-    public AudioClip keysChainAudio;
     public AudioClip playerDetectionAudio;
     public AudioClip carsAudio;
     public AudioClip spawnAudio;
@@ -21,7 +20,7 @@ public class AudioEventManager : MonoBehaviour
     public AudioClip youWinAudio;
     public AudioClip youLoseAudio;
 
-    private UnityAction<Vector3, int> bearFootStepEventListener;
+    private UnityAction<Vector3> bearFootStepEventListener;
     private UnityAction<Vector3> guardSoundEventListener;
     private UnityAction<Vector3> inGameListener;
 	private UnityAction<Vector3> gameMenuListener;
@@ -32,7 +31,7 @@ public class AudioEventManager : MonoBehaviour
 
     private void Awake()
     {
-        bearFootStepEventListener = new UnityAction<Vector3, int>(bearFootstepEventHandler);
+        bearFootStepEventListener = new UnityAction<Vector3>(bearFootstepEventHandler);
         inGameListener = new UnityAction<Vector3>(inGameAudioEventHandler);
 		gameMenuListener = new UnityAction<Vector3>(gameMenuAudioEventHandler);
         objectCollisionListener = new UnityAction<Vector3>(objectCollisionEventHandler);
@@ -44,7 +43,7 @@ public class AudioEventManager : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.StartListening<BearFootStepEvent, Vector3, int>(bearFootStepEventListener);
+        EventManager.StartListening<BearFootStepEvent, Vector3>(bearFootStepEventListener);
         EventManager.StartListening<InGameEvent, Vector3>(inGameListener);
         EventManager.StartListening<GameMenuEvent, Vector3>(gameMenuListener);
         EventManager.StartListening<OnCollisionEvent, Vector3>(objectCollisionListener);
@@ -56,7 +55,7 @@ public class AudioEventManager : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.StopListening<BearFootStepEvent, Vector3, int>(bearFootStepEventListener);
+        EventManager.StopListening<BearFootStepEvent, Vector3>(bearFootStepEventListener);
         EventManager.StopListening<InGameEvent, Vector3>(inGameListener);
         EventManager.StopListening<GameMenuEvent, Vector3>(gameMenuListener);
         EventManager.StopListening<OnCollisionEvent, Vector3>(objectCollisionListener);
@@ -95,26 +94,19 @@ public class AudioEventManager : MonoBehaviour
         {
             EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
             snd.audioSrc.clip = this.playerDetectionAudio;
-            snd.audioSrc.time = 0f;
             snd.audioSrc.Play();
-            snd.audioSrc.SetScheduledEndTime(AudioSettings.dspTime+(2f - 0f));
         }
     }
 
-    private void bearFootstepEventHandler(Vector3 pos, int characterVol)
+    private void bearFootstepEventHandler(Vector3 pos)
     {
 
         if (spawnAudio)
         {
-
             EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
-
             snd.audioSrc.clip = this.bearFootStepAudio[0];
-
             snd.audioSrc.minDistance = 5f;
             snd.audioSrc.maxDistance = 100f;
-            snd.audioSrc.volume = (float) characterVol;
-
             snd.audioSrc.Play();
         }
     }
@@ -124,14 +116,10 @@ public class AudioEventManager : MonoBehaviour
 
         if (spawnAudio)
         {
-
             EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
-
             snd.audioSrc.clip = this.guardAudio[0];
-
             snd.audioSrc.minDistance = 5f;
             snd.audioSrc.maxDistance = 100f;
-
             snd.audioSrc.Play();
         }
     }
@@ -154,11 +142,11 @@ public class AudioEventManager : MonoBehaviour
 		if (eventSound3DPrefab)
 		{
 			EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
-			snd.audioSrc.clip = this.gameMenuAudio;
-			snd.audioSrc.minDistance = 5f;
-			snd.audioSrc.maxDistance = 100f;
-			snd.audioSrc.loop = true; // Let the scene always play music
-			snd.audioSrc.Play();
+            snd.audioSrc.clip = this.gameMenuAudio;
+            snd.audioSrc.minDistance = 5f;
+            snd.audioSrc.maxDistance = 100f;
+            snd.audioSrc.loop = true; // Let the scene always play music
+            snd.audioSrc.Play();
 		}
 	}
 
