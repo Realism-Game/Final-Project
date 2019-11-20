@@ -50,13 +50,12 @@ public class AIStateMachine : MonoBehaviour
                 break;
             case AIState.Moving:
                 if (!los.foundSomething) {
-                    
-                    if (los.collisionObject == null){
+                    if (los.collisionObject == null) {
                         aiState = AIState.Stationary;
                     } else {
                         aiState = AIState.LostQuarry;
                     }
-                } 
+                }
                 break;
             case AIState.LostQuarry:
                 if (los.foundSomething) {
@@ -64,7 +63,7 @@ public class AIStateMachine : MonoBehaviour
                 } else if (!los.foundSomething && los.collisionObject == null){
                     aiState = AIState.Stationary;
                 }
-                break;                
+                break;
             //... TODO handle other states
             default:
                 break;

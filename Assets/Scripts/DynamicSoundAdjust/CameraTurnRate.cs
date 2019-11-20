@@ -6,11 +6,10 @@ using TMPro;
 public class CameraTurnRate : MonoBehaviour
 {
     TextMeshProUGUI currentCameraTurnRate;
-    public int cameraRate;
+    public static int cameraRate = 100;
 
     void Start() {
         currentCameraTurnRate = GetComponent<TextMeshProUGUI> ();
-        cameraRate = 100; // Set default value when start game
         currentCameraTurnRate.text = cameraRate.ToString() + "/100";
     }
 
