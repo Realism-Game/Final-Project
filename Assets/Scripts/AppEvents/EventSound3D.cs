@@ -31,8 +31,8 @@ public class EventSound3D : MonoBehaviour
                 setVolume(((float) CharacterVolume.characterVolume / 100.0f));
                 break;
             case "DetectionSound":
-                if (LightLineOfSight.maybeLost)
-                    Destroy(this.gameObject);
+                // if (LightLineOfSight.maybeLost)
+                //     Destroy(this.gameObject);
                 break;
             default:
                 setVolume(((float) BgVolume.backgroundVolume / 100.0f));
