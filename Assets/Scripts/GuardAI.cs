@@ -9,8 +9,8 @@ public class GuardAI : MonoBehaviour
     //public GameObject enemy;
     public GameObject[] waypoints;
     public int currWaypoint = -1;
-    public float walk = 0.7f;
-    public float run = 1.3f;
+    public float walk = 0.45f;
+    public float run = 0.9f;
     public bool isStationary;
 
 

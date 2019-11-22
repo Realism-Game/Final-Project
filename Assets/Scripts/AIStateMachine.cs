@@ -55,6 +55,7 @@ public class AIStateMachine : MonoBehaviour
                     alertSound.Play(0);
                     exclamationPoint.enabled = true;
                     StartCoroutine(DisableWithDelay(delay, exclamationPoint));
+                    Debug.Log("Target Acquired");
                 }
                 break;
             case AIState.Pursuit:
