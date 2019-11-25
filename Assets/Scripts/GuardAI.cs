@@ -8,6 +8,7 @@ public class GuardAI : MonoBehaviour
 {
     //public GameObject enemy;
     public GameObject[] waypoints;
+    public GameObject GameController;
     public int currWaypoint = -1;
     public float walk = 0.45f;
     public float run = 0.9f;
@@ -23,6 +24,7 @@ public class GuardAI : MonoBehaviour
     private ThirdPersonCharacterNoCrouch character;
     private Vector3 lastSeen;
     private FieldOfView fov;
+    private GameController game;
 
     [Range(1,179)]
     public float rotation = 90f;
@@ -41,6 +43,7 @@ public class GuardAI : MonoBehaviour
         anim = GetComponent<Animator>();
         myNavMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         character = GetComponent<ThirdPersonCharacterNoCrouch>();
+        game = GameController.GetComponent<GameController>();
         if (!isStationary) {
             setNextWaypoint();
         } else {
@@ -107,7 +110,6 @@ public class GuardAI : MonoBehaviour
                         myNavMeshAgent.SetDestination(destination);
                     }
                 } else if (stateMachine.aiState == AIStateMachine.AIState.LostQuarry && lastSeen != new Vector3(-100f, -100f, -100f)) {
-                    Debug.Log("Last Seen: " + lastSeen);
                     myNavMeshAgent.SetDestination(lastSeen);
                     lastSeen = new Vector3(-100f, -100f, -100f);
                 }
@@ -232,26 +234,13 @@ public class GuardAI : MonoBehaviour
 
     void OnCollisionEnter(Collision c) {
         if(c.gameObject.CompareTag("Detectable")) {
-            // GameObject gameObject = this.gameObject.transform.GetChild(0).gameObject;
-            // int i = 0;
-            // while (gameObject.name != "Light") {
-            //     i++;
-            //     gameObject = this.gameObject.transform.GetChild(i).gameObject;
-            // }
-            // i = 0;
-            // gameObject = gameObject.transform.GetChild(0).gameObject;
-            // while(gameObject.name != "Cone") {
-            //     i++;
-            //     gameObject = gameObject.transform.GetChild(0).gameObject;
-            // }
-            if (c.gameObject != null) {
-                fov.visibleTarget = null;
-                // los.foundSomething = false;
-                // los.collisionObject = null;
-                Destroy(c.gameObject);
-                Collider collider = gameObject.GetComponent<Collider>();
-                collider.enabled = true;
-            }
+        	GameObject gameObject = c.gameObject;
+        	fov.visibleTarget = null;
+        	Collider collider = gameObject.GetComponent<Collider>();
+        	collider.enabled = true;
+        	if (gameObject.name == "Bear") {
+        		game.GameOver = true;
+        	}
         }
     }
 }

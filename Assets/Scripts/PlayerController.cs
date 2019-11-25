@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
 	Transform cameraT;
 
 	private bool isWalking = false;
-	private float sleepWaitTime = 2.0f;
 	private float idleSwap = 0.0f;
 	private float timer = 0.0f;
 
@@ -52,7 +51,7 @@ public class PlayerController : MonoBehaviour
 			float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
 			currentSpeed = Mathf.SmoothDamp (currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 			animator.SetBool("IsRun", true);
-			stamina -= Time.deltaTime;
+			stamina -= (Time.deltaTime / 2);
 			staminaBar.value = stamina;
 		} else {
 			running = false;
@@ -70,9 +69,9 @@ public class PlayerController : MonoBehaviour
 				staminaBar.value = stamina;
 				running = false;
 				animator.SetBool("IsRun", false);
-			}else if (stamina < maxStamina)
+			} else if (stamina < maxStamina)
 			{
-				stamina += Time.deltaTime/6;
+				stamina += Time.deltaTime/3;
 				staminaBar.value = stamina;
 			}
 		}
@@ -88,7 +87,6 @@ public class PlayerController : MonoBehaviour
         {
         	animator.SetBool("IsWalk", true);
         	animator.SetBool("IsIdle", false);
-        	animator.SetBool("IsSleep", false);
         	isWalking = true;
         	timer = 0.0f;
         }
@@ -97,11 +95,6 @@ public class PlayerController : MonoBehaviour
 	    	animator.SetBool("IsWalk", false);
 	    	animator.SetBool("IsIdle", true);
         	timer += Time.deltaTime;
-        	
-        	if (timer > sleepWaitTime) {
-				animator.SetBool("IsSleep", true);
-				animator.SetBool("IsIdle", false);
-        	}
         }
         else
         {

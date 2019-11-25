@@ -51,7 +51,6 @@ public class Bear : MonoBehaviour
         if (!isWalking)
         {
         	anim.SetBool("IsWalk", false);
-        	anim.SetBool("IsIdle", true);
         }
         else
         {

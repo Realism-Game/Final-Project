@@ -74,13 +74,11 @@ public class LightLineOfSight: MonoBehaviour{
             collisionObject = null;
             foundSomething = false;
             maybeFoundSomething = false;
-            Debug.Log("moving to last seen point");
         }
     }
 
     void OnTriggerExit(Collider c) {
         if (c.gameObject.CompareTag("Detectable") && foundSomething) {
-            Debug.Log("maybe lost quarry");
             maybeLost = true;
             foundSomething = false;
             StartCoroutine(afterTrigger());
