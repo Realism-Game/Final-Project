@@ -16,7 +16,7 @@ public class GuardAI : MonoBehaviour
 
 
 
-    private float temp = 0f; 
+    private float temp = 0f;
     private Animator anim;
     private UnityEngine.AI.NavMeshAgent myNavMeshAgent;
     private AIStateMachine stateMachine;

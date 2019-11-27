@@ -49,6 +49,7 @@ public class AIStateMachine : MonoBehaviour
             case AIState.Normal:
                 if (fov.visibleTarget) {
                     aiState = AIState.Pursuit;
+                    // Play detection sound
                     EventManager.TriggerEvent<DetectionEvent, Vector3>(new Vector3(0, 0, 0));
                     exclamationPoint.enabled = true;
                     StartCoroutine(DisableWithDelay(delay, exclamationPoint));
