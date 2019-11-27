@@ -16,7 +16,6 @@ public class AIStateMachine : MonoBehaviour
     public AIState aiState;
     public float delay = 2f;
     private FieldOfView fov;
-    private AudioSource alertSound;
     private MeshRenderer exclamationPoint;
     private MeshRenderer questionMark;
     // Use this for initialization
@@ -24,7 +23,6 @@ public class AIStateMachine : MonoBehaviour
         guard = GetComponent<GuardAI>();
         fov = GetComponent<FieldOfView>();
         aiState = AIState.Normal;
-        alertSound = GetComponent<AudioSource>();
         Component[] meshes = GetComponentsInChildren<MeshRenderer>();
         foreach (MeshRenderer mesh in meshes) {
             if (mesh.name == "!") {
@@ -46,13 +44,12 @@ public class AIStateMachine : MonoBehaviour
         // closeEnoughForMeleeAttack(enemy))
         // aiState = AIState.AttackPlayerWithMelee;
         //Assess the current state, possibly deciding to change to a different state
-        
-        
+
         switch (aiState) {
             case AIState.Normal:
                 if (fov.visibleTarget) {
                     aiState = AIState.Pursuit;
-                    alertSound.Play(0);
+                    EventManager.TriggerEvent<DetectionEvent, Vector3>(new Vector3(0, 0, 0));
                     exclamationPoint.enabled = true;
                     StartCoroutine(DisableWithDelay(delay, exclamationPoint));
                 }
@@ -67,7 +64,7 @@ public class AIStateMachine : MonoBehaviour
                         aiState = AIState.Normal;
                         exclamationPoint.enabled = false;
                     }
-                } 
+                }
                 break;
             case AIState.LostQuarry:
                 if (fov.visibleTarget) {
@@ -85,7 +82,7 @@ public class AIStateMachine : MonoBehaviour
                 // } else if (!los.foundSomething && los.collisionObject == null){
                 //     aiState = AIState.Normal;
                 // }
-                break;                
+                break;
             //... TODO handle other states
             default:
                 break;

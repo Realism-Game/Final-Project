@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0073769097, g: 0.0076010474, b: 0.0073769097, a: 1}
+  m_IndirectSpecularColor: {r: 0.0074173464, g: 0.0075959535, b: 0.0074173464, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1022,7 +1022,8 @@ PrefabInstance:
       propertyPath: m_Range
       value: 7.52
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4106748814812560977, guid: dce4115ac46b0204087ce5750e0915f9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dce4115ac46b0204087ce5750e0915f9, type: 3}
 --- !u!1 &259321894
 GameObject:
@@ -1098,7 +1099,8 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 31fb82757da6c4ff983a73c769d9ba16,
+    type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0
@@ -2915,7 +2917,8 @@ PrefabInstance:
       propertyPath: m_Range
       value: 7.52
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4106748814812560977, guid: dce4115ac46b0204087ce5750e0915f9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dce4115ac46b0204087ce5750e0915f9, type: 3}
 --- !u!1 &676629637
 GameObject:
@@ -3641,7 +3644,8 @@ PrefabInstance:
       propertyPath: m_Range
       value: 7.52
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4106748814812560977, guid: dce4115ac46b0204087ce5750e0915f9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dce4115ac46b0204087ce5750e0915f9, type: 3}
 --- !u!1 &799110057
 GameObject:
@@ -3806,7 +3810,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -244}
+  m_AnchoredPosition: {x: 290, y: -171}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &844856182
@@ -3834,7 +3838,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -5183,7 +5187,8 @@ MonoBehaviour:
     topRight: {r: 1, g: 1, b: 1, a: 1}
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
+  m_fontColorGradientPreset: {fileID: 11400000, guid: 31fb82757da6c4ff983a73c769d9ba16,
+    type: 2}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_overrideHtmlColors: 0
@@ -7287,7 +7292,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerDetectionAudio
       value: 
-      objectReference: {fileID: 8300000, guid: b0180e080fc2b42d191c4c99586b7637, type: 3}
+      objectReference: {fileID: 8300000, guid: 26007a2487994e54e8c8c748ee230ff3, type: 3}
     - target: {fileID: -4250481269790169933, guid: 781b2e2294d74492889af5483bfb8156,
         type: 3}
       propertyPath: bearFootStepAudio.Array.data[0]

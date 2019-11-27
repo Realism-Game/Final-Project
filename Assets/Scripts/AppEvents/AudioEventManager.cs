@@ -94,7 +94,7 @@ public class AudioEventManager : MonoBehaviour
         {
             EventSound3D snd = Instantiate(eventSound3DPrefab, pos, Quaternion.identity, null);
             snd.audioSrc.clip = this.playerDetectionAudio;
-            snd.audioSrc.Play();
+            snd.audioSrc.Play(0);
         }
     }
 
