@@ -8,6 +8,7 @@ TagManager:
   - Button_trigger
   - Detectable
   - Climb
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - post_processing
   - Ground
   - Guard
-  - 
-  - 
+  - Target
+  - Wall
   - 
   - 
   - 

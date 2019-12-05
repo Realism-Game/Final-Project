@@ -59,30 +59,32 @@ public class FieldOfView : MonoBehaviour {
         Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
         if (targetsInViewRadius.Length == 1 && transform.position.y > 0) {
             Transform target = targetsInViewRadius [0].transform;
-            
-            Vector3 dirToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
-                //Debug.Log("before" + transform.position);
-                float dstToTarget = Vector3.Distance (transform.position, target.position);
-                if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
-                    visibleTarget = target;
-                    lostQuarry = false;
-                    //Debug.Log("after" + transform.position);
-                    //Debug.DrawRay(transform.position, dirToTarget * dstToTarget, Color.green, 3f);
-                    //Debug.Log("Target Acquired");
+            if (!target.GetComponent<BearState>().hidden) {
+
+                Vector3 dirToTarget = (target.position - transform.position).normalized;
+                if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
+                    //Debug.Log("before" + transform.position);
+                    float dstToTarget = Vector3.Distance (transform.position, target.position);
+                    if (!Physics.Raycast (transform.position, dirToTarget, dstToTarget, obstacleMask)) {
+                        visibleTarget = target;
+                        lostQuarry = false;
+                        //Debug.Log("after" + transform.position);
+                        //Debug.DrawRay(transform.position, dirToTarget * dstToTarget, Color.green, 3f);
+                        //Debug.Log("Target Acquired");
+                    } else {
+                        if (visibleTarget) {
+                            visibleTarget = null;
+                            lostQuarry = true;
+                            Debug.Log("Target Blocked");
+                        }
+                    }
                 } else {
                     if (visibleTarget) {
                         visibleTarget = null;
                         lostQuarry = true;
-                        Debug.Log("Target Blocked");
-                    }
+                        Debug.Log("Target outside of angle");
+                    }                
                 }
-            } else {
-                if (visibleTarget) {
-                    visibleTarget = null;
-                    lostQuarry = true;
-                    Debug.Log("Target outside of angle");
-                }                
             }
         } else if (transform.position.y > 0) {
             if (visibleTarget) {
