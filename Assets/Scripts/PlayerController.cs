@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
 	private float idleSwap = 0.0f;
 	private float timer = 0.0f;
 
-	private float stamina = 2.0f;
-	private float maxStamina = 2.0f;
+	public float stamina = 2.0f;
+	public float maxStamina = 2.0f;
 
 	public Slider staminaBar;
 	
