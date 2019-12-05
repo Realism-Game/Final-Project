@@ -27,6 +27,8 @@ public class ThirdPersonCamera : MonoBehaviour
 	}
 
 	void LateUpdate () {
+		float camRate = (InGameCamera.camRate == 0) ? CameraTurnRate.cameraRate : InGameCamera.camRate/10;
+		mouseSensitivity = camRate; // Use camera slider value
 		yaw += Input.GetAxis ("Mouse X") * mouseSensitivity;
 		pitch -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
 		pitch = Mathf.Clamp (pitch, pitchMinMax.x, pitchMinMax.y);
