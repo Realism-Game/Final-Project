@@ -1243,7 +1243,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.281e-42, y: 0, z: 0, w: 17915746}
+  m_BoundingSphereOverride: {x: 0.9950648, y: 0.18078288, z: -0.00000008497284, w: -0.000000037769865}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -2970,6 +2970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0398bc4b80f73426eb9ab8ac84200d13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraSlider: {fileID: 2110011660}
 --- !u!1 &1445633611
 GameObject:
   m_ObjectHideFlags: 0

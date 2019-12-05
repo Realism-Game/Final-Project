@@ -4523,7 +4523,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 3.0092666e-36, y: 1.009742e-28, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 3.6e-43, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -6091,9 +6091,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 839408338}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0398bc4b80f73426eb9ab8ac84200d13, type: 3}
+  m_Script: {fileID: 11500000, guid: 3abced72455d24980af5073806507b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraSlider: {fileID: 1378108301}
 --- !u!114 &839408340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6112,7 +6113,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100/100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 887e4babbf1f94447ac5e764f9aad9a3, type: 2}
   m_sharedMaterial: {fileID: -5754215116879360440, guid: 887e4babbf1f94447ac5e764f9aad9a3,
@@ -6757,9 +6758,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005223266}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d605e3ca592f04b539767077af8f4e6e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0699d9c84194d42d2a4a5042fe580f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameVolumeSlider: {fileID: 1083569859}
 --- !u!114 &1005223268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6778,7 +6780,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100/100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 887e4babbf1f94447ac5e764f9aad9a3, type: 2}
   m_sharedMaterial: {fileID: -5754215116879360440, guid: 887e4babbf1f94447ac5e764f9aad9a3,
@@ -7262,10 +7264,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1005223267}
         m_MethodName: textUpdate
-        m_Mode: 4
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1083569859}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7816,10 +7818,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1347442457}
         m_MethodName: textUpdate
-        m_Mode: 4
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1190278573}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8176,9 +8178,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1347442456}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb7bec0756cb425490235479c5fc890, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e5211c5593b247009049b8925dc70bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bearSlider: {fileID: 1190278573}
 --- !u!114 &1347442458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8197,7 +8200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100/100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 887e4babbf1f94447ac5e764f9aad9a3, type: 2}
   m_sharedMaterial: {fileID: -5754215116879360440, guid: 887e4babbf1f94447ac5e764f9aad9a3,
@@ -8408,10 +8411,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 839408339}
         m_MethodName: textUpdate
-        m_Mode: 4
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1378108301}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
