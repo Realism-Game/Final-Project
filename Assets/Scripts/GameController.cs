@@ -20,9 +20,13 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (GameOver)
-        {
-            gameover.gameOver = true;
+        if (!GameInstruction.firstTime) {
+            GameInstruction.viewOn = false;
+        } else {
+            GameInstruction.viewOn = true;
         }
+
+        if (GameOver)
+            gameover.gameOver = true;
     }
 }
