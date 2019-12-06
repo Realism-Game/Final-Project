@@ -28,20 +28,14 @@ public class EventSound3D : MonoBehaviour
         switch (audioSrc.clip.name.ToString())
         {
             case "grizzlybear":
-                int menuBearVol = CharacterVolume.characterVolume;
-                int finalBearVol = InGameCharVol.bearVol;
-
-                int bearVol = (finalBearVol == 0) ? menuBearVol : finalBearVol;
-                setVolume(((float) bearVol / 100.0f));
+                setVolume(((float) CharacterVolume.characterVolume / 100.0f));
                 break;
             case "DetectionSound":
+                // if (LightLineOfSight.maybeLost)
+                //     Destroy(this.gameObject);
                 break;
             default:
-                int menuVol = BgVolume.backgroundVolume;
-                int finalVol = InGameVolume.inGameVol;
-
-                int mainVol = (finalVol == 0) ? menuVol : finalVol;
-                setVolume(((float) mainVol / 100.0f));
+                setVolume(((float) BgVolume.backgroundVolume / 100.0f));
                 break;
         }
         audioSrc.volume = musicVolume;
