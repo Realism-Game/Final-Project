@@ -39,6 +39,7 @@ public class EventSound3D : MonoBehaviour
             default:
                 int menuVol = BgVolume.backgroundVolume;
                 int finalVol = InGameVolume.inGameVol;
+
                 int mainVol = (finalVol == 0) ? menuVol : finalVol;
                 setVolume(((float) mainVol / 100.0f));
                 break;

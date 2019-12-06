@@ -7,7 +7,7 @@ public class BearFootStepEmitter : MonoBehaviour
 {
     public void Start()
     {
-        InvokeRepeating("ExecuteFootstep", 2.0f, 10.0f); // Executing every 10s
+        InvokeRepeating("ExecuteFootstep", 2.0f, 13.0f); // Executing every 13s
     }
 
     private void ExecuteFootstep() {
