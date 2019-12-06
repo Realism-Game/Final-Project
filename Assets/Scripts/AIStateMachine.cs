@@ -19,7 +19,7 @@ public class AIStateMachine : MonoBehaviour
     private AudioSource alertSound;
     private MeshRenderer exclamationPoint;
     private MeshRenderer questionMark;
-    private BearState bearState;
+    private PlayerController bearController;
     // Use this for initialization
     void Start () {
         guard = GetComponent<GuardAI>();
@@ -30,10 +30,8 @@ public class AIStateMachine : MonoBehaviour
         foreach (MeshRenderer mesh in meshes) {
             if (mesh.name == "!") {
                 exclamationPoint = mesh;
-                Debug.Log(mesh.name);
             } else if (mesh.name == "?") {
                 questionMark = mesh;
-                Debug.Log(mesh.name);
             }
         }
         //exclamationPoint = GetComponentInChildren<MeshRenderer>();
@@ -49,14 +47,14 @@ public class AIStateMachine : MonoBehaviour
         //Assess the current state, possibly deciding to change to a different state
         
         if (fov.visibleTarget) {
-            bearState = fov.visibleTarget.GetComponent<BearState>();
+            bearController = fov.visibleTarget.GetComponent<PlayerController>();
         }
         
         switch (aiState) {
             case AIState.Normal:
                 if (fov.visibleTarget) {
                     
-                    bearState.chased = true;
+                    bearController.chased = true;
                     aiState = AIState.Pursuit;
                     alertSound.Play(0);
                     exclamationPoint.enabled = true;
@@ -65,7 +63,7 @@ public class AIStateMachine : MonoBehaviour
                 break;
             case AIState.Pursuit:
                 if (!fov.visibleTarget) {
-                    bearState.chased = false;
+                    bearController.chased = false;
                     if (fov.lostQuarry) {
                         aiState = AIState.LostQuarry;
                         exclamationPoint.enabled = false;
@@ -78,13 +76,13 @@ public class AIStateMachine : MonoBehaviour
                 break;
             case AIState.LostQuarry:
                 if (fov.visibleTarget) {
-                    bearState.chased = true;
+                    bearController.chased = true;
                     aiState = AIState.Pursuit;
                     questionMark.enabled = false;
                     exclamationPoint.enabled = true;
                     StartCoroutine(DisableWithDelay(delay, exclamationPoint));
                 } else if (!fov.lostQuarry) {
-                    bearState.chased = false;
+                    bearController.chased = false;
                     aiState = AIState.Normal;
                     questionMark.enabled = false;
                     exclamationPoint.enabled = false;

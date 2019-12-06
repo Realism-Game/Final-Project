@@ -28,10 +28,10 @@ public class HidingSpot : MonoBehaviour
         if (targetsInViewRadius.Length == 1) {
             GameObject bear = targetsInViewRadius[0].transform.gameObject;
             Animator anim = bear.GetComponent<Animator>();
-            BearState bearState = bear.GetComponent<BearState>();
-            if (!bearState.chased) {
+            PlayerController bearController = bear.GetComponent<PlayerController>();
+            if (!bearController.chased) {
                 obstacle.enabled = true;
-                bearState.hidden = isHidden;
+                bearController.hidden = isHidden;
                 if (!isHidden) {
                     anim.SetBool("IsSleep", false);
                     enterText.enabled = true;
@@ -45,11 +45,13 @@ public class HidingSpot : MonoBehaviour
                 if (Input.GetKeyUp(KeyCode.Q) && !isHidden) {
                     isHidden = true;
                     enterText.enabled = false;
-                    Debug.Log("Hidden");
+                    bearController.walkSpeed = 0.0f;
+                    bearController.runSpeed = 0.0f;
                 } else if (Input.GetKeyUp(KeyCode.Q) && isHidden) {
                     isHidden = false;
                     exitText.enabled = false;
-                    Debug.Log("Not Hidden");
+                    bearController.walkSpeed = 1.2f;
+                    bearController.runSpeed = 2.0f;
                 }
             } else {
                 obstacle.enabled = false;

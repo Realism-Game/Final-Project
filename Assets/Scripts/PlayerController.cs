@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-  	private float walkSpeed = 1.2f;
-	private float runSpeed = 2.0f;
+  	public float walkSpeed = 1.2f;
+	public float runSpeed = 2.0f;
 
 	private float turnSmoothTime = 0.2f;
 	float turnSmoothVelocity;
@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
 	public float stamina = 2.0f;
 	public float maxStamina = 2.0f;
+	public bool hidden = false;
+	public bool chased = false;
 
 	public Slider staminaBar;
 	
@@ -90,6 +92,22 @@ public class PlayerController : MonoBehaviour
         	isWalking = true;
         	timer = 0.0f;
         }
+
+        if (Input.GetKey(KeyCode.Q)) {
+        	if (isWalking) {
+        		animator.SetBool("IsWalk", false);
+        		animator.SetBool("IsIdle", true);
+        		timer += Time.deltaTime;
+        	}
+        	else
+        	{
+        		animator.SetBool("IsWalk", true);
+        		animator.SetBool("IsIdle", false);
+        		isWalking = true;
+        		timer = 0.0f;
+        	}
+        }
+
         if (!isWalking)
         {
 	    	animator.SetBool("IsWalk", false);

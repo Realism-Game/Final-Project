@@ -59,7 +59,7 @@ public class FieldOfView : MonoBehaviour {
         Collider[] targetsInViewRadius = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
         if (targetsInViewRadius.Length == 1 && transform.position.y > 0) {
             Transform target = targetsInViewRadius [0].transform;
-            if (!target.GetComponent<BearState>().hidden) {
+            if (!target.GetComponent<PlayerController>().hidden) {
 
                 Vector3 dirToTarget = (target.position - transform.position).normalized;
                 if (Vector3.Angle (transform.forward, dirToTarget) < viewAngle / 2) {
