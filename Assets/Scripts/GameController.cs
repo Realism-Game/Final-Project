@@ -7,13 +7,9 @@ public class GameController : MonoBehaviour
 	public bool GameOver = false;
     public GameObject gameOver;
 	private GameOver gameover;
-    public GameObject GUI;
 
     void Start() {
         EventManager.TriggerEvent<InGameEvent, Vector3>(new Vector3(0, 0, 0));
-        if (!GameInstruction.firstTime) {
-            GUI.SetActive(true);
-        }
     }
 
     // Update is called once per frame
@@ -31,8 +27,6 @@ public class GameController : MonoBehaviour
         }
 
         if (GameOver)
-        {
             gameover.gameOver = true;
-        }
     }
 }

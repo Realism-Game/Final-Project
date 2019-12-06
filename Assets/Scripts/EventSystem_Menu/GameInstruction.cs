@@ -7,6 +7,7 @@ public class GameInstruction : MonoBehaviour
 	public static bool viewOn = false;
     public static bool firstTime = true;
 	private CanvasGroup canvasGroup;
+
     // Start is called before the first frame update
     void Awake()
     {
