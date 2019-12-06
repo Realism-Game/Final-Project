@@ -29,8 +29,6 @@ public class GameInstruction : MonoBehaviour
                 canvasGroup.alpha = 1f;
                 Time.timeScale = 0f;
             }
-        } else {
-            disableView();
         }
     }
 
