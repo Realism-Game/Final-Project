@@ -6,10 +6,10 @@ public class ThirdPersonCamera : MonoBehaviour
 {
   public bool lockCursor;
     //was 10 sensitive
-	private float mouseSensitivity = 3;
+	private float mouseSensitivity = 2;
 	public Transform target;
 	private float dstFromTarget = 2;
-	private Vector2 pitchMinMax = new Vector2 (-15, 55);
+	private Vector2 pitchMinMax = new Vector2 (-5, 5);
 
 	//was .12f smooth
 	private float rotationSmoothTime = 1;

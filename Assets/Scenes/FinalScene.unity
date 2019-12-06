@@ -4539,7 +4539,7 @@ PrefabInstance:
     - target: {fileID: 1758392462825945102, guid: 4a9618cbe39c04c1491fb855838e62ca,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1758392462825945102, guid: 4a9618cbe39c04c1491fb855838e62ca,
         type: 3}
@@ -4567,6 +4567,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: defb3b5112bad40bf85db3a9e861889a,
         type: 2}
+    - target: {fileID: 1758392462825945102, guid: 4a9618cbe39c04c1491fb855838e62ca,
+        type: 3}
+      propertyPath: m_text
+      value: Welcome To Zoo Escape
+      objectReference: {fileID: 0}
     - target: {fileID: 1758392462827288106, guid: 4a9618cbe39c04c1491fb855838e62ca,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -4682,6 +4687,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758392463005551637, guid: 4a9618cbe39c04c1491fb855838e62ca,
+        type: 3}
+      propertyPath: m_Name
+      value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758392462442230737, guid: 4a9618cbe39c04c1491fb855838e62ca,
+        type: 3}
+      propertyPath: m_text
+      value: Find the key to the Gate then head for the gate. Avoid the guards.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a9618cbe39c04c1491fb855838e62ca, type: 3}

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CameraTurnRate : MonoBehaviour
 {
     TextMeshProUGUI currentCameraTurnRate;
-    public static int cameraRate = 3; // Default camera rate turn
+    public static int cameraRate = 2; // Default camera rate turn
     public Slider cameraSlider;
 
     void Start() {
