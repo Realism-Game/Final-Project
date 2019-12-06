@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-  	private float walkSpeed = 0.55f;
-	private float runSpeed = 1;
+  	private float walkSpeed = 1.2f;
+	private float runSpeed = 2.0f;
 
 	private float turnSmoothTime = 0.2f;
 	float turnSmoothVelocity;
